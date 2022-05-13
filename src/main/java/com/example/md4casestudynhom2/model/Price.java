@@ -15,6 +15,31 @@ public class Price {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private AppService appService;
+
+    public Price(Long id, int price, Supplier supplier, AppService appService) {
+        this.id = id;
+        this.price = price;
+        this.supplier = supplier;
+        this.appService = appService;
+    }
+
+    public Price(int price, Supplier supplier, AppService appService) {
+        this.price = price;
+        this.supplier = supplier;
+        this.appService = appService;
+    }
+
+    public AppService getAppService() {
+        return appService;
+    }
+
+    public void setAppService(AppService appService) {
+        this.appService = appService;
+    }
+
     public Long getId() {
         return id;
     }

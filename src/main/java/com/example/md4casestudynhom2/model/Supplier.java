@@ -39,8 +39,11 @@ public class Supplier {
     private Gender gender;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "supplier_service",joinColumns = {@JoinColumn(name="supplier_id")},inverseJoinColumns = {@JoinColumn(name = "service_id")})
+    @JoinTable(name = "supplier_service",joinColumns = {@JoinColumn(name="supplier_id")},
+            inverseJoinColumns = {@JoinColumn(name = "service_id")})
     private Set<AppService> serviceSet;
+
+
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -163,6 +166,22 @@ public class Supplier {
     }
 
     public void setStatus(AppStatus status) {
+        this.status = status;
+    }
+
+    public Supplier(String name, String email, String hobby, int age, String personal, String note, double height, double weight, String image, String phone, Address address, Gender gender, AppStatus status) {
+        this.name = name;
+        this.email = email;
+        this.hobby = hobby;
+        this.age = age;
+        this.personal = personal;
+        this.note = note;
+        this.height = height;
+        this.weight = weight;
+        this.image = image;
+        this.phone = phone;
+        this.address = address;
+        this.gender = gender;
         this.status = status;
     }
 

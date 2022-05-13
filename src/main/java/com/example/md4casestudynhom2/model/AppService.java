@@ -1,6 +1,8 @@
 package com.example.md4casestudynhom2.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "services")
@@ -8,9 +10,7 @@ public class AppService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     public Long getId() {
         return id;
     }
@@ -35,6 +35,7 @@ public class AppService {
         this.id = id;
         this.name = name;
     }
+
 
     public AppService() {
     }

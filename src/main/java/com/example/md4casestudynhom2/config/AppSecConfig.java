@@ -50,7 +50,7 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/**");
         http.httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/", "koibito/login", "/sign-up").permitAll()
+                .antMatchers("/home", "koibito/login", "/sign-up").permitAll()
                 .and().authorizeRequests().antMatchers("/admin**").hasAnyRole("ADMIN")
                 .and().authorizeRequests().antMatchers("/user**").hasAnyRole("USER")
                 .and()

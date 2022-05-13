@@ -35,6 +35,12 @@ public class AppUserController {
     public ResponseEntity<Iterable<AppUser>> showAll(){
         return new ResponseEntity<>(appUserService.findAll(),HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<AppUser> deleteUser(@PathVariable Long id){
+        appUserService.remove(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     public void sendMail(String email,String name,String password){
         senderService.sendEmail(email,
                 "Welcome",

@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/app_service")
+@CrossOrigin("*")
 public class AppServiceController {
     @Autowired
     private IAppServiceService appServiceService;

@@ -1,16 +1,20 @@
-package com.example.md4casestudynhom2.model;
+package com.example.md4casestudynhom2.model.login;
+
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "services")
-public class AppService {
+@Table(name="role")
+public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+
     public Long getId() {
         return id;
     }
@@ -27,16 +31,11 @@ public class AppService {
         this.name = name;
     }
 
-    public AppService(String name) {
-        this.name = name;
-    }
-
-    public AppService(Long id, String name) {
+    public AppRole(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-
-    public AppService() {
+    public AppRole() {
     }
 }

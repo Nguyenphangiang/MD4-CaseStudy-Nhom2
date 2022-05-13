@@ -1,32 +1,34 @@
-package com.example.md4casestudynhom2.service.appservice;
+package com.example.md4casestudynhom2.service.appServiceS;
 
 import com.example.md4casestudynhom2.model.AppService;
-import com.example.md4casestudynhom2.repo.IAppServiceRepo;
+import com.example.md4casestudynhom2.repo.appServiceRepo.IAppServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
-public class AppServiceService implements IAppServiceService {
+public class AppServiceS implements IAppServiceS {
+
     @Autowired
-    private IAppServiceRepo appServiceRepo;
+    private IAppServiceRepository appServiceRepository;
     @Override
     public Iterable<AppService> findAll() {
-        return appServiceRepo.findAll();
+        return appServiceRepository.findAll();
     }
 
     @Override
     public Optional<AppService> findById(Long id) {
-        return appServiceRepo.findById(id);
+        return appServiceRepository.findById(id);
     }
 
     @Override
     public AppService save(AppService appService) {
-        return appServiceRepo.save(appService);
+        return appServiceRepository.save(appService);
     }
 
     @Override
     public void remove(Long id) {
-        appServiceRepo.deleteById(id);
+        appServiceRepository.deleteById(id);
     }
 }

@@ -1,8 +1,8 @@
 package com.example.md4casestudynhom2.controller;
 
 import com.example.md4casestudynhom2.model.Price;
-import com.example.md4casestudynhom2.service.price.IPriceService;
-import com.example.md4casestudynhom2.service.price.PriceService;
+
+import com.example.md4casestudynhom2.service.priceService.IPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

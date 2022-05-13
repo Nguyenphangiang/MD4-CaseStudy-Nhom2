@@ -15,6 +15,25 @@ public class Price {
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private AppService appService;
+    public Price() {
+    }
+
+    public Price(int price, Supplier supplier, AppService appService) {
+        this.price = price;
+        this.supplier = supplier;
+        this.appService = appService;
+    }
+
+    public Price(Long id, int price, Supplier supplier, AppService appService) {
+        this.id = id;
+        this.price = price;
+        this.supplier = supplier;
+        this.appService = appService;
+    }
+
     public Long getId() {
         return id;
     }
@@ -39,17 +58,11 @@ public class Price {
         this.supplier = supplier;
     }
 
-    public Price(int price, Supplier supplier) {
-        this.price = price;
-        this.supplier = supplier;
+    public AppService getAppService() {
+        return appService;
     }
 
-    public Price(Long id, int price, Supplier supplier) {
-        this.id = id;
-        this.price = price;
-        this.supplier = supplier;
-    }
-
-    public Price() {
+    public void setAppService(AppService appService) {
+        this.appService = appService;
     }
 }

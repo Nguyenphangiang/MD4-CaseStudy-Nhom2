@@ -1,6 +1,6 @@
 package com.example.md4casestudynhom2.model;
 
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import javax.persistence.*;
 

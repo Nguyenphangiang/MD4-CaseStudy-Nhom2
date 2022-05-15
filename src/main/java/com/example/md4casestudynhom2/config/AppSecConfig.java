@@ -50,9 +50,9 @@ public class AppSecConfig extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/**");
         http.httpBasic().authenticationEntryPoint(restAuthenticationEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/home", "koibito/login", "/sign-up").permitAll()
-                .and().authorizeRequests().antMatchers("/admin**").hasAnyRole("ADMIN")
-                .and().authorizeRequests().antMatchers("/user**").hasAnyRole("USER")
+                .antMatchers("/auth/home", "/auth/login", "/sign-in/**").permitAll()
+                .and().authorizeRequests().antMatchers("/auth/admin**").hasAnyRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/auth/user**").hasAnyRole("USER")
                 .and()
                 .csrf().disable();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

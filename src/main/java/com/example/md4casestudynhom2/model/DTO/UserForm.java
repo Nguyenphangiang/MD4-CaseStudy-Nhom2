@@ -17,13 +17,14 @@ public class UserForm   {
 
     private Long id;
 
-    @UniqueUsername
+
     @NotEmpty(message = "Please enter user name.")
-    @Size(min = 3, max = 15,message = "3 - 15 characters.")
+//    @Size(min = 3, max = 15,message = "3 - 15 characters.")
     private String name;
 
 //    @PasswordConfirm
 //    private PasswordForm passwordForm;
+
     private String password;
 
     private String confirmPassword;

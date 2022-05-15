@@ -18,6 +18,7 @@ public class Price {
     @ManyToOne
     @JoinColumn(name = "service_id")
     private AppService appService;
+
     public Price() {
     }
 

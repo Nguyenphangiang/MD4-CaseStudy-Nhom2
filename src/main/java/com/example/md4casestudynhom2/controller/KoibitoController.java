@@ -2,10 +2,12 @@ package com.example.md4casestudynhom2.controller;
 
 import com.example.md4casestudynhom2.model.*;
 import com.example.md4casestudynhom2.model.DTO.SupplierForm;
+import com.example.md4casestudynhom2.model.svAndP.ServiceAndPrice;
 import com.example.md4casestudynhom2.service.addressService.IAddressService;
 import com.example.md4casestudynhom2.service.appServiceS.IAppServiceS;
 import com.example.md4casestudynhom2.service.genderService.IGenderService;
 import com.example.md4casestudynhom2.service.priceService.IPriceService;
+import com.example.md4casestudynhom2.service.serviceAndPrice.IServiceAndPriceSV;
 import com.example.md4casestudynhom2.service.statusService.IStatusService;
 import com.example.md4casestudynhom2.service.supplierService.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,9 @@ public class KoibitoController {
     private IAppServiceS appServiceS;
 
     @Autowired
+    private IServiceAndPriceSV serviceAndPriceSV;
+
+    @Autowired
     private IPriceService priceService;
 
     @GetMapping("/price")
@@ -68,6 +73,12 @@ public class KoibitoController {
 
     @Autowired
     Environment env;
+
+    @GetMapping("/findPriceBySupplierId/{id}")
+    public ResponseEntity<Iterable<ServiceAndPrice>> showPriceAndName(@PathVariable Long id){
+        Iterable<ServiceAndPrice> listPriceAndName = serviceAndPriceSV.getNameAndPrice(id);
+        return new ResponseEntity<>(listPriceAndName, HttpStatus.OK);
+    }
 
     @GetMapping("/address")
     public ResponseEntity<Iterable<Address>> showAllAddress(){

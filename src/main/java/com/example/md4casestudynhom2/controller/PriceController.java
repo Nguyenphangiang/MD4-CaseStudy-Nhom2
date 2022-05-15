@@ -1,8 +1,12 @@
 package com.example.md4casestudynhom2.controller;
 
+import com.example.md4casestudynhom2.model.AppService;
 import com.example.md4casestudynhom2.model.Price;
 
+import com.example.md4casestudynhom2.model.Supplier;
+import com.example.md4casestudynhom2.service.appServiceS.IAppServiceS;
 import com.example.md4casestudynhom2.service.priceService.IPriceService;
+import com.example.md4casestudynhom2.service.supplierService.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,10 @@ import java.util.Optional;
 public class PriceController {
     @Autowired
     private IPriceService priceService;
+    @Autowired
+    private ISupplierService supplierService;
+    @Autowired
+    private IAppServiceS appServiceS;
 
     @GetMapping
     public ResponseEntity<Iterable<Price>> findAll(){
@@ -36,11 +44,14 @@ public class PriceController {
     @PutMapping("/{id}")
     public ResponseEntity<Price> updatePrice(@PathVariable Long id, @RequestBody Price price){
         Optional<Price> priceOptional = priceService.findById(id);
-        price.setId(priceOptional.get().getId());
-        if (!priceOptional.isPresent()){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        priceService.save(price);
+        Long supplier_id = priceOptional.get().getSupplier().getId();
+        Long service_id = priceOptional.get().getAppService().getId();
+        Optional<Supplier> supplierOptional = supplierService.findById(supplier_id);
+        Supplier updateSupplier = supplierOptional.get();
+        Optional<AppService> serviceOptional = appServiceS.findById(service_id);
+        AppService updateService = serviceOptional.get();
+        Price updatePrice = new Price(id, price.getPrice(), updateSupplier, updateService);
+        priceService.save(updatePrice);
         return new ResponseEntity<>(priceOptional.get(), HttpStatus.OK);
     }
 

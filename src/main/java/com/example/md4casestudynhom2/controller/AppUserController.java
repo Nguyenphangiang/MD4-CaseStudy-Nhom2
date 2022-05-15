@@ -27,29 +27,27 @@ public class AppUserController {
     @Autowired
     private EmailSenderService senderService;
 
-    @PostMapping(value = "", produces = { MediaType.APPLICATION_JSON_VALUE } )
+    @PostMapping("")
     @ResponseBody
-    public UserJsonRespone createUser(@ModelAttribute  @Valid UserForm userForm, BindingResult bindingResult){
-//        if (!userForm.getPasswordForm().getPassword().equals(userForm.getPasswordForm().getConfirmPassword())){
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-        UserJsonRespone respone = new UserJsonRespone();
-        if (bindingResult.hasErrors()){
-            Map<String,String> errors = bindingResult.getFieldErrors().stream()
-                    .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
-            respone.setValidated(false);
-            respone.setErrorMessage(errors);
+    public ResponseEntity<AppUser> createUser(@ModelAttribute   UserForm userForm){
+//
+//        UserJsonRespone respone = new UserJsonRespone();
+//        if (bindingResult.hasErrors()){
+//            Map<String,String> errors = bindingResult.getFieldErrors().stream()
+//                    .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
+//            respone.setValidated(false);
+//            respone.setErrorMessage(errors);
 
 //            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            respone.setValidated(true);
-            respone.setUserForm(userForm);
+//        } else {
+//            respone.setValidated(true);
+//            respone.setUserForm(userForm);
             AppUser user = new AppUser(userForm.getName(),userForm.getPassword(),userForm.getRoleSet());
             sendMail(userForm.getEmail(),userForm.getName(), userForm.getPassword());
             appUserService.save(user);
-//            return new ResponseEntity<>(user,HttpStatus.CREATED);
-        }
-        return respone;
+            return new ResponseEntity<>(user,HttpStatus.CREATED);
+//        }
+//        return respone;
         }
     @GetMapping("/list")
     public ResponseEntity<Iterable<AppUser>> showAll(){

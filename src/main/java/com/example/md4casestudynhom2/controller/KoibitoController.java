@@ -174,4 +174,13 @@ public class KoibitoController {
         return new ResponseEntity<>(listSupplierAge, HttpStatus.OK);
     }
 
+    @GetMapping("/supByMultiCondition")
+    public ResponseEntity<Iterable<SupplierAge>> findSupplierByMultiCondition(@RequestParam Long age1,
+                                                                              @RequestParam Long age2,
+                                                                              @RequestParam Long idG,
+                                                                              @RequestParam Long idAd){
+        Iterable<SupplierAge> listSupplierAge = supplierAgeSV.getSupplierByMultilCondition(age1, age2, idG, idAd);
+        return new ResponseEntity<>(listSupplierAge, HttpStatus.OK);
+    }
+
 }

@@ -17,5 +17,11 @@ public interface ISupplierRepository extends CrudRepository<Supplier, Long> {
     @Query(nativeQuery = true, value = "select name, image, age from suppliers where age between ? and ?;")
     Iterable<SupplierAge> getSupplierByAgeBetween(Long age1, Long age2);
 
+    @Query(nativeQuery = true, value = "select suppliers.id, age, email, height, hobby, image, name, note, personal, phone, weight, status_id, address, gender  from suppliers join address a on a.id = suppliers.address_id\n" +
+            "join genders g on g.id = suppliers.gender_id\n" +
+            "where age between ? and ? and gender_id = ? and address_id = ?;")
+    Iterable<SupplierAge> getSupplierByMultilCondition(Long age1, Long age2, Long idG, Long idAd);
+
+
 
 }

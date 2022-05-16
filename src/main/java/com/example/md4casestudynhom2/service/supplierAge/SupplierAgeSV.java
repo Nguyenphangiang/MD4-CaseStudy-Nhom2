@@ -37,4 +37,9 @@ public class SupplierAgeSV implements ISupplierAgeSV{
     public Iterable<SupplierAge> getSupplierByAgeBetween(Long age1, Long age2) {
         return supplierAgeRepo.getSupplierByAgeBetween(age1, age2);
     }
+
+    @Override
+    public Iterable<SupplierAge> getSupplierByMultilCondition(Long age1, Long age2, Long idG, Long idAd) {
+        return supplierAgeRepo.getSupplierByMultilCondition(age1, age2, idG, idAd);
+    }
 }

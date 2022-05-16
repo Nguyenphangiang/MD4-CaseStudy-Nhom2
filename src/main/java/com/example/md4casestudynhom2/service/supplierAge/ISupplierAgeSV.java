@@ -7,4 +7,6 @@ import com.example.md4casestudynhom2.service.IGeneralService;
 public interface ISupplierAgeSV extends IGeneralService<SupplierAge> {
 
     Iterable<SupplierAge> getSupplierByAgeBetween(Long age1, Long age2);
+
+    Iterable<SupplierAge> getSupplierByMultilCondition(Long age1, Long age2, Long idG, Long idAd);
 }

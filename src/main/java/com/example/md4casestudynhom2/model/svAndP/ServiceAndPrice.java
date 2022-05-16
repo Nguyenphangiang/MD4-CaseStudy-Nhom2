@@ -7,5 +7,5 @@ public interface ServiceAndPrice {
 
     double getPrice();
 
-    Long getId();
+    Long getIdService();
 }

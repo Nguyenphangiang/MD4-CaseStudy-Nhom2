@@ -2,6 +2,7 @@ package com.example.md4casestudynhom2.controller;
 
 import com.example.md4casestudynhom2.model.*;
 import com.example.md4casestudynhom2.model.DTO.SupplierForm;
+import com.example.md4casestudynhom2.model.supplier_age.SupplierAge;
 import com.example.md4casestudynhom2.model.svAndP.ServiceAndPrice;
 import com.example.md4casestudynhom2.service.addressService.IAddressService;
 import com.example.md4casestudynhom2.service.appServiceS.IAppServiceS;
@@ -10,6 +11,7 @@ import com.example.md4casestudynhom2.service.gender.IGenderService;
 import com.example.md4casestudynhom2.service.priceService.IPriceService;
 import com.example.md4casestudynhom2.service.serviceAndPrice.IServiceAndPriceSV;
 import com.example.md4casestudynhom2.service.statusService.IStatusService;
+import com.example.md4casestudynhom2.service.supplierAge.ISupplierAgeSV;
 import com.example.md4casestudynhom2.service.supplierService.ISupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -55,11 +57,12 @@ public class KoibitoController {
         return new ResponseEntity<>(priceService.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<Price> updateSupplier(@PathVariable long id, @RequestBody Price price ){
-        priceService.save( new Price(id, price.getPrice(), price.getSupplier()));
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+
+//    @PutMapping("/edit/{id}")
+//    public ResponseEntity<Price> updateSupplier(@PathVariable long id, @RequestBody Price price ){
+//        priceService.save( new Price(id, price.getPrice(), price.getSupplier()));
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     @DeleteMapping("/deletePrice/{id}")
     public ResponseEntity<Price> deletePrice(@PathVariable Long id) {
@@ -160,6 +163,25 @@ public class KoibitoController {
             existSupplier.setImage(supplierOptional.get().getImage());
         }
         return new ResponseEntity<>(supplierService.save(existSupplier), HttpStatus.OK);
+    }
+
+    @Autowired
+    private ISupplierAgeSV supplierAgeSV;
+
+    @GetMapping("/supByAgeBetween")
+    public ResponseEntity<Iterable<SupplierAge>> findSupplierByAgeBetween(@RequestParam Long age1,
+                                                                          @RequestParam Long age2){
+        Iterable<SupplierAge> listSupplierAge = supplierAgeSV.getSupplierByAgeBetween(age1, age2);
+        return new ResponseEntity<>(listSupplierAge, HttpStatus.OK);
+    }
+
+    @GetMapping("/supByMultiCondition")
+    public ResponseEntity<Iterable<SupplierAge>> findSupplierByMultiCondition(@RequestParam Long age1,
+                                                                              @RequestParam Long age2,
+                                                                              @RequestParam Long idG,
+                                                                              @RequestParam Long idAd){
+        Iterable<SupplierAge> listSupplierAge = supplierAgeSV.getSupplierByMultilCondition(age1, age2, idG, idAd);
+        return new ResponseEntity<>(listSupplierAge, HttpStatus.OK);
     }
 
 }

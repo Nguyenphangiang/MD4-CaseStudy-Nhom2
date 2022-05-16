@@ -39,6 +39,16 @@ public class SupplierForm {
 
     private AppStatus status;
 
+    private Long userId;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public SupplierForm(Long id, String name, String email, String hobby, int age, String personal, String note, double height, double weight, MultipartFile image, String phone, Address address, Gender gender, Set<AppService> serviceSet, AppStatus status) {
         this.id = id;
         this.name = name;

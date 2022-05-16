@@ -43,7 +43,52 @@ public class Supplier {
             inverseJoinColumns = {@JoinColumn(name = "service_id")})
     private Set<AppService> serviceSet;
 
+    private Long userId;
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Supplier(String name, String email, String hobby, int age, String personal, String note, double height, double weight, String image, String phone, Address address, Gender gender, Set<AppService> serviceSet, Long userId, AppStatus status) {
+        this.name = name;
+        this.email = email;
+        this.hobby = hobby;
+        this.age = age;
+        this.personal = personal;
+        this.note = note;
+        this.height = height;
+        this.weight = weight;
+        this.image = image;
+        this.phone = phone;
+        this.address = address;
+        this.gender = gender;
+        this.serviceSet = serviceSet;
+        this.userId = userId;
+        this.status = status;
+    }
+
+    public Supplier(Long id, String name, String email, String hobby, int age, String personal, String note, double height, double weight, String image, String phone, Address address, Gender gender, Set<AppService> serviceSet, Long userId, AppStatus status) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.hobby = hobby;
+        this.age = age;
+        this.personal = personal;
+        this.note = note;
+        this.height = height;
+        this.weight = weight;
+        this.image = image;
+        this.phone = phone;
+        this.address = address;
+        this.gender = gender;
+        this.serviceSet = serviceSet;
+        this.userId = userId;
+        this.status = status;
+    }
 
     @ManyToOne
     @JoinColumn(name = "status_id")

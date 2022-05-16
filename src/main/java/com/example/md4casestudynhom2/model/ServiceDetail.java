@@ -1,6 +1,9 @@
 package com.example.md4casestudynhom2.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +15,33 @@ public class ServiceDetail {
     @ManyToOne
     @JoinColumn(name = "service_id")
     private AppService service;
+    @ManyToOne
+    @JoinColumn(name= "supplier_id")
+    private Supplier supplier;
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public ServiceDetail(AppService service, Supplier supplier, LocalDateTime meetTime, String meetAddress) {
+        this.service = service;
+        this.supplier = supplier;
+        this.meetTime = meetTime;
+        this.meetAddress = meetAddress;
+    }
+
+    public ServiceDetail(Long id, AppService service, Supplier supplier, LocalDateTime meetTime, String meetAddress) {
+        this.id = id;
+        this.service = service;
+        this.supplier = supplier;
+        this.meetTime = meetTime;
+        this.meetAddress = meetAddress;
+    }
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime meetTime;
 
     private String meetAddress;

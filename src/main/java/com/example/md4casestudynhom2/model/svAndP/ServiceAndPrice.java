@@ -4,4 +4,6 @@ public interface ServiceAndPrice {
     String getName();
 
     double getPrice();
+
+    Long getId();
 }

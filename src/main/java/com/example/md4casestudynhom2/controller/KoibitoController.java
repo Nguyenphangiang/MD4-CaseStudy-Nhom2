@@ -118,7 +118,7 @@ public class KoibitoController {
         Supplier supplier = new Supplier(supplierForm.getName(), supplierForm.getEmail(), supplierForm.getHobby(),
                 supplierForm.getAge(), supplierForm.getPersonal(), supplierForm.getNote(), supplierForm.getHeight(),
                 supplierForm.getWeight(), fileName, supplierForm.getPhone(), supplierForm.getAddress(),
-                supplierForm.getGender(), supplierForm.getServiceSet(), supplierForm.getStatus());
+                supplierForm.getGender(), supplierForm.getServiceSet(),supplierForm.getUserId(), supplierForm.getStatus());
         supplierService.save(supplier);
         return new ResponseEntity<>(supplier,HttpStatus.ACCEPTED);
     }
@@ -149,7 +149,7 @@ public class KoibitoController {
         Supplier existSupplier = new Supplier(id, supplierForm.getName(), supplierForm.getEmail(), supplierForm.getHobby(),
                 supplierForm.getAge(), supplierForm.getPersonal(), supplierForm.getNote(), supplierForm.getHeight(),
                 supplierForm.getWeight(), fileName, supplierForm.getPhone(), supplierForm.getAddress(),
-                supplierForm.getGender(), supplierForm.getServiceSet(), supplierForm.getStatus());
+                supplierForm.getGender(), supplierForm.getServiceSet(),supplierForm.getUserId(), supplierForm.getStatus());
         try {
             FileCopyUtils.copy(multipartFile.getBytes(), new File(fileUpload + fileName));
         } catch (IOException e) {

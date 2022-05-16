@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -64,5 +65,15 @@ public class CustomerController{
         customerService.save(customer);
         return new ResponseEntity<>(customerOptional.get(), HttpStatus.OK);
     }
-
+        @GetMapping("/listCustomer/search")
+    public ResponseEntity<Iterable<Customer> >findByCustomerName(@RequestParam (name="q") Optional<String> q) {
+            Iterable<Customer> customers;
+            if (q.isPresent()) {
+                String queryString = q.get().toString();
+                customers = customerService.findCustomerByName(queryString);
+            } else {
+                customers = customerService.findAll();
+            }
+            return new ResponseEntity<>(customers, HttpStatus.OK);
+        }
 }
